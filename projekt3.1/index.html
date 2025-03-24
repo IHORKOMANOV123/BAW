@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>Directive by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		/* Стили для центровки блока логина/калькулятора в футере */
+        #login-container {
+          text-align: center;
+          margin-top: 50px;
+        }
+        #login-container form {
+          display: inline-block;
+          text-align: left;
+        }
+        #login-container input {
+          margin: 5px;
+        }
+	</style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<div id="header">
+	<span class="logo icon fa-paper-plane"></span>
+	<div class="intro">
+		<h1>Cześć, aby skorzystać z kalkulatora kredytowego, musisz się zalogować</h1>
+		<a href="#footer" class="button round">Login</a>
+	</div>
+</div>
+
+<!-- Main -->
+<div id="main">
+
+	<header class="major container medium">
+		<h2>We conduct experiments that
+			<br />
+			may or may not seriously
+			<br />
+			break the universe</h2>
+		<!--
+        <p>Tellus erat mauris ipsum fermentum<br />
+        etiam vivamus nunc nibh morbi.</p>
+        -->
+	</header>
+
+	<div class="box alt container">
+		<section class="feature left">
+			<a href="#" class="image icon solid fa-signal"><img src="images/pic01.jpg" alt="" /></a>
+			<div class="content">
+				<h3>The First Thing</h3>
+				<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+			</div>
+		</section>
+		<section class="feature right">
+			<a href="#" class="image icon solid fa-code"><img src="images/pic02.jpg" alt="" /></a>
+			<div class="content">
+				<h3>The Second Thing</h3>
+				<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+			</div>
+		</section>
+		<section class="feature left">
+			<a href="#" class="image icon solid fa-mobile-alt"><img src="images/pic03.jpg" alt="" /></a>
+			<div class="content">
+				<h3>The Third Thing</h3>
+				<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+			</div>
+		</section>
+	</div>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="container">
+		<div id="login-container">
+			<!-- Блок логина -->
+			<div id="login-block">
+				<h2>Login</h2>
+				<form id="login-form">
+					<div>
+						<label for="username">Username:</label>
+						<input type="text" id="username" name="username" required>
+					</div>
+					<div>
+						<label for="password">Password:</label>
+						<input type="password" id="password" name="password" required>
+					</div>
+					<button type="submit">Login</button>
+				</form>
+			</div>
+			<!-- Блок калькулятора кредита (скрыт по умолчанию) -->
+			<div id="calculator-block" style="display:none;">
+				<h2>Credit Calculator</h2>
+				<form id="calculator-form">
+					<div>
+						<label for="loan-amount">Loan Amount:</label>
+						<input type="number" id="loan-amount" name="loan-amount" required>
+					</div>
+					<div>
+						<label for="interest-rate">Interest Rate (%):</label>
+						<input type="number" step="0.1" id="interest-rate" name="interest-rate" required>
+					</div>
+					<div>
+						<label for="loan-term">Loan Term (years):</label>
+						<input type="number" id="loan-term" name="loan-term" required>
+					</div>
+					<button type="submit">Calculate</button>
+				</form>
+				<div id="calculator-result"></div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+	// Обработка формы логина
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var username = document.getElementById("username").value.trim();
+        var password = document.getElementById("password").value.trim();
+        if ((username === "admin" && password === "admin") || (username === "user" && password === "user")) {
+            // Скрываем блок логина и показываем блок калькулятора
+            document.getElementById("login-block").style.display = "none";
+            document.getElementById("calculator-block").style.display = "block";
+            // Прокручиваем страницу к блоку калькулятора
+            document.getElementById("calculator-block").scrollIntoView({ behavior: "smooth" });
+        } else {
+            alert("Неверные учетные данные");
+        }
+    });
+
+    // Обработка формы калькулятора кредита
+    document.getElementById("calculator-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var loanAmount = parseFloat(document.getElementById("loan-amount").value);
+        var interestRate = parseFloat(document.getElementById("interest-rate").value) / 100;
+        var loanTerm = parseFloat(document.getElementById("loan-term").value);
+        var months = loanTerm * 12;
+        var monthlyInterestRate = interestRate / 12;
+        var monthlyPayment;
+        if (monthlyInterestRate === 0) {
+            monthlyPayment = loanAmount / months;
+        } else {
+            monthlyPayment = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) / (Math.pow(1 + monthlyInterestRate, months) - 1);
+        }
+        monthlyPayment = monthlyPayment.toFixed(2);
+        document.getElementById("calculator-result").innerText = "Ежемесячный платеж: " + monthlyPayment;
+    });
+</script>
+
+</body>
+</html>
