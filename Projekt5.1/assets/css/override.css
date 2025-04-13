@@ -1,0 +1,98 @@
+
+#banner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+}
+
+
+#banner .inner {
+    width: 100%;
+    padding: 2rem;
+}
+
+
+#banner ul.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+#banner ul.actions li {
+    list-style: none;
+    margin: 0;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+
+input[type="submit"].primary,
+input[type="submit"] {
+    background: #df405a;
+    color: white;
+    border: none;
+    transition: background 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="submit"].primary:hover,
+input[type="submit"]:hover {
+    background: #c6344c;
+}
+
+
+form label {
+    display: block;
+    margin-top: 1em;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.wrapper .box h2 {
+    text-align: center;
+}
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    color: #000000;
+    background-color: #ffffff;
+
+.result-success {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.result-error {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+body, html, h1, h2, h3, h4, h5, h6, p, a, label, span, li, div, input, select, textarea, button {
+    color: #000000 !important;
+}
+.result-success strong {
+    color: #000000 !important;
+}
